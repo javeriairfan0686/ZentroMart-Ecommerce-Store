@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Font Awesome for Cart Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: url('images/grocery background page.jpg') no-repeat center center;
+      background-size: cover;       /* makes the image cover entire screen */
+      background-attachment: fixed; /* keeps image static while scrolling */
+      color: #333;                  /* optional, for text readability */
+    }
+
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;        /* allow wrapping to next line */
+      gap: 20px;
+      justify-content: center; /* center products in each row */
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;          /* controls max 4 per row depending on container width */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product-card p {
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .quantity-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .quantity-controls button {
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .quantity-controls input {
+      width: 40px;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .add-to-cart {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: darkblue;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart.active {
+      background-color: #f5f5dc; /* cream color */
+      color: darkblue;
+    }
+  </style>
+</head>
+<body>
+
+    <!--Nav bar display-->
+  <nav class="navbar">
+    <div class="brand">ZentroMart</div>
+    
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+    
+
+    <div class="cart">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">0</span>
+    </div>
+  </nav>
+
+
+  <h1 style="text-align: center;">Groceries Products</h1>
+  <div class="product-container" id="product-container">
+    <!-- Products will be injected here -->
+  </div>
+
+<script>
+  const products = [
+    { name: "Rice", price: 50, image: "images/groceries.jpg" },
+    { name: "Flour", price: 40, image: "images/flour.jpg" },
+    { name: "Spices", price: 120, image: "images/spices.jpg" },
+    { name: "Oil", price: 180, image: "images/dalda.jpg" },
+    { name: "Kutti hoe mirch", price: 180, image: "images/kutti hoe mirch.jpg" },
+     { name: "Rice", price: 50, image: "images/groceries.jpg" },
+    { name: "Flour", price: 40, image: "images/flour.jpg" },
+    { name: "Spices", price: 120, image: "images/spices.jpg" },
+    { name: "Oil", price: 180, image: "images/dalda.jpg" },
+    { name: "Kutti hoe mirch", price: 180, image: "images/kutti hoe mirch.jpg" },
+     { name: "Rice", price: 50, image: "images/groceries.jpg" },
+    { name: "Flour", price: 40, image: "images/flour.jpg" },
+    { name: "Spices", price: 120, image: "images/spices.jpg" },
+    { name: "Oil", price: 180, image: "images/dalda.jpg" },
+    { name: "Kutti hoe mirch", price: 180, image: "images/kutti hoe mirch.jpg" },
+
+  ];
+
+  const container = document.getElementById("product-container");
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>Price: $${product.price}</p>
+      <div class="quantity-controls">
+        <button onclick="decrement(this)">-</button>
+        <input type="text" value="0" readonly>
+        <button onclick="increment(this)">+</button>
+      </div>
+      <button class="add-to-cart" onclick="toggleCart(this)">Add to Cart</button>
+    `;
+
+    container.appendChild(card);
+  });
+
+  function increment(btn) {
+    const input = btn.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+  }
+
+  function decrement(btn) {
+    const input = btn.nextElementSibling;
+    if (parseInt(input.value) > 0) {
+      input.value = parseInt(input.value) - 1;
+    }
+  }
+
+  function toggleCart(btn) {
+    const quantityInput = btn.previousElementSibling.querySelector("input");
+    const qty = parseInt(quantityInput.value);
+
+    if (qty === 0) {
+      showMessage("Please select at least 1 item!");
+      return;
+    }
+
+    // Show "Added" temporarily
+    btn.classList.add("active");
+    btn.textContent = "Added";
+
+    setTimeout(() => {
+      btn.classList.remove("active");
+      btn.textContent = "Add to Cart";
+    }, 1500); // reset after 1.5 seconds
+  }
+
+  // Fancy floating message
+  function showMessage(msg) {
+    const message = document.createElement("div");
+    message.textContent = msg;
+    message.style.position = "fixed";
+    message.style.top = "20px";
+    message.style.left = "50%";
+    message.style.transform = "translateX(-50%)";
+    message.style.backgroundColor = "rgba(255, 165, 0, 0.9)";
+    message.style.color = "white";
+    message.style.padding = "10px 20px";
+    message.style.borderRadius = "10px";
+    message.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+    message.style.fontWeight = "bold";
+    message.style.zIndex = "1000";
+    document.body.appendChild(message);
+
+    setTimeout(() => {
+      message.remove();
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>

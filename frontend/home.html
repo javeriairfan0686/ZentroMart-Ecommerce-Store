@@ -3,25 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZentroMart - Home</title>
+  <title>MyStore</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Font Awesome for Cart Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>ZentroMart</h1>
-    <nav>
-      <a href="home.html">Home</a>
-      <a href="cart.html">Cart 🛒</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>Our Products</h2>
-    <div id="product-list">
-      <!-- Products will be loaded here -->
+  <!--Nav bar display-->
+  <nav class="navbar">
+    <div class="brand">ZentroMart</div>
+    
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </div>
-  </main>
 
-  <script src="js/script.js"></script>
+    
+
+    <div class="cart">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">0</span>
+    </div>
+  </nav>
+
+  
+
+
+  <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to ZentroMart</h1>
+        <p>Your one-stop shop for groceries in Sukkur</p>
+        <a href="#categories" class="shop-now">Shop Now</a>
+      </div>
+    </section>
+
+    <!-- Category Section -->
+    <section class="categories" id="categories">
+      <div class="category-card" id="grocery">
+        <a href="product.html">
+          <img src="images/groceries.jpg" alt="Groceries">
+          <h3>Groceries</h3>
+        </a>
+      </div>
+
+
+      <div class="category-card">
+        <a href="personal-care.html">
+          <img src="images/personal care.jpg" alt="Personal Care">
+          <h3>Personal Care</h3>
+        </a>
+      </div>
+
+      <div class="category-card">
+        <a href="household.html">
+          <img src="images/household essesntail.jpg" alt="Household Essentials">
+          <h3>Household Essentials</h3>
+        </a>
+      </div>
+    </section>
+
+    
+
+
 </body>
 </html>

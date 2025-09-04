@@ -1,53 +1,160 @@
+/* Navbar Styling */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-}
-header {
-  background: green;
-  color: white;
-  padding: 15px;
-  text-align: center;
-}
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-#product-list {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-}
-.product {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-.product img {
-  display: block;
-  margin: 0 auto 10px;
-  border-radius: 8px;
-}
-
-.quantity-control {
+.navbar {
+  height: 60px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: 10px 0;
+  padding: 15px 40px;
+  background: #2c3e50;
+  color: #fff;
 }
 
-.quantity-control button {
-  width: 30px;
-  height: 25px;
+/* Brand (Left) */
+.navbar .brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Nav Links (Center) */
+.navbar .nav-links {
+  flex: 1;
+  text-align: center;
+}
+
+.navbar .nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #ecf0f1;
   font-size: 18px;
+  transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+  color: #1abc9c;
+}
+
+/* Cart (Right) */
+.navbar .cart {
+  position: relative;
+  font-size: 20px;
   cursor: pointer;
 }
 
-.quantity-control input {
-  width: 40px;
+.navbar .cart .cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Hero Section with Grocery Background */
+.hero {
+  height: 90vh;
+  background: url("../images/grocery background.webp") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin: 0 5px;
+  color: white;
+  position: relative;
+}
+
+/* Dark transparent layer (so text is readable over the grocery image) */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* change 0.5 → lighter/darker overlay */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1; /* keeps text above overlay */
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.shop-now {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #1abc9c;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.shop-now:hover {
+  background: #16a085;
+}
+
+/* cards css */
+
+/* Category Cards */
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 20px;
+  background: #f8f9fa;
+}
+
+.category-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 300px;
+  text-align: center;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.category-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.category-card h3 {
+  padding: 15px;
+  font-size: 20px;
+  background: #2c3e50;
+  color: white;
+  margin: 0;
+}
+
+.category-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+
+/*Shop now will scroll*/
+
+html {
+  scroll-behavior: smooth;
 }
